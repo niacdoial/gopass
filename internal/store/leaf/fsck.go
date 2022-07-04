@@ -63,7 +63,7 @@ func (s *Store) Fsck(ctx context.Context, path string) error {
 	}
 
 	if err := s.storage.Push(ctx, "", ""); err != nil {
-		if errors.Is(err, store.ErrGitNoRemote) {
+		if !errors.Is(err, store.ErrGitNoRemote) {
 			out.Printf(ctx, "RCS Push failed: %s", err)
 		}
 	}
